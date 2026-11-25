@@ -1,10 +1,10 @@
-"""Publish the drawn front page into the make.fun output directory.
+"""Publish the drawn front page to the make.fun output directory.
 
-Copies entry.png (which sits next to this script) into $MAKEFUN_OUTPUT_DIR,
-defaulting to /output, then reports the written file's size and sha256 and
-verifies the copy is byte-identical to the source.
+entry.png sits beside this script; it is refused when 1 MiB or larger, else
+copied into $MAKEFUN_OUTPUT_DIR (/output by default, created when missing).
+The copy's size and sha256 are printed and checked against the source:
+identical exits 0, different exits 1.
 """
-
 import hashlib
 import os
 import shutil
@@ -12,27 +12,25 @@ import sys
 
 
 def digest(path):
-    with open(path, "rb") as handle:
-        return hashlib.sha256(handle.read()).hexdigest()
+    with open(path, "rb") as fh:
+        return hashlib.sha256(fh.read()).hexdigest()
 
 
 def main():
-    source = os.path.join(os.path.dirname(os.path.abspath(__file__)), "entry.png")
-    source_size = os.path.getsize(source)
-    print("entry:", os.path.basename(source), source_size, "bytes")
-    if source_size >= 1048576:
+    src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "entry.png")
+    size = os.path.getsize(src)
+    print("entry:", os.path.basename(src), size, "bytes")
+    if size >= 1048576:
         print("too large")
         return 1
-    target_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(target_dir, exist_ok=True)
-    target = os.path.join(target_dir, os.path.basename(source))
-    shutil.copyfile(source, target)
-    size = os.path.getsize(target)
-    copied = digest(target)
-    print("wrote", target, size, "bytes")
-    print("sha256", copied)
-    if copied != digest(source):
-        print("checksum mismatch")
+    outdir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(outdir, exist_ok=True)
+    dst = os.path.join(outdir, os.path.basename(src))
+    shutil.copyfile(src, dst)
+    print("wrote", dst, os.path.getsize(dst), "bytes")
+    print("sha256", digest(dst))
+    if digest(dst) != digest(src):
+        print("sha256 mismatch")
         return 1
     return 0
 

@@ -3,7 +3,7 @@
 [![rank](https://make.fun/badge/news-image-20261124/AhCheng91/ahcheng91-news-image-24/rank.svg)](https://make.fun/bounty/news-image-20261124/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261124)
 [![reward](https://make.fun/badge/news-image-20261124/AhCheng91/ahcheng91-news-image-24/reward.svg)](https://make.fun/bounty/news-image-20261124?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261124)
 
-A broadsheet front page of Tuesday 24 November 2026 — Huawei convicted on 10 of 12 counts in Brooklyn, Houthis hitting Riyadh's PIF tower and closing on Aden, Trump forcing Nvidia's board to take Jensen Huang back. It carries 36 stories from 6 regions, with a world map, a pin per story and a source under every picture.
+A big-type front page of Tuesday 24 November 2026 — Huawei convicted on 10 of 12 counts in Brooklyn, Houthis hitting Riyadh's PIF tower and closing on Aden, Trump forcing Nvidia's board to take Jensen Huang back. It carries 35 dated stories from 7 regions: three illustrated leads, eight cards, a world map with a pin per picture, 24 briefs and a date check that names the stories left out as other days' news.
 
 ## Run it
 
